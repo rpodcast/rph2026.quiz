@@ -1,8 +1,8 @@
 [content]
-name = "R/Pharma Quiz"
+name = "R/Pharma 2026 Quiz"
 summary = "Timed 15-question R/Pharma quiz with a leaderboard."
 entrypoint = "app.R"
-access_type = "external"
+access_type = "internal"
 content_type = "shiny"
 
 [language]

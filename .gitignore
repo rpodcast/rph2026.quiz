@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+persistent/
+.Renviron
+
+# Real quiz questions (kept local / in object storage)
+dev/testing_sandbox/

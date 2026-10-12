@@ -1,0 +1,808 @@
+{
+  "id": "dev-silly-quiz",
+  "version": "2026-10-11-dev",
+  "title": "Silly Development Quiz",
+  "description": "A placeholder pool of 50 light-hearted multiple-choice questions for local development and testing. It has nothing to do with R/Pharma; the real question bank is kept out of the repository. Each question has exactly one correct answer (the `correct` field matches an option `value`), an `explanation`, a `category`, and a `difficulty`.",
+  "questions": [
+    {
+      "id": "d01",
+      "short": "octopus hearts",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "easy",
+      "prompt": "How many hearts does an octopus have?",
+      "options": [
+        { "value": "a", "label": "One" },
+        { "value": "b", "label": "Two" },
+        { "value": "c", "label": "Three" },
+        { "value": "d", "label": "Eight, one per arm" }
+      ],
+      "correct": "c",
+      "explanation": "Octopuses have two branchial hearts for the gills and one systemic heart for the rest of the body."
+    },
+    {
+      "id": "d02",
+      "short": "wombat poop",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "medium",
+      "prompt": "What shape is wombat poop famous for?",
+      "options": [
+        { "value": "a", "label": "Spheres" },
+        { "value": "b", "label": "Cubes" },
+        { "value": "c", "label": "Spirals" },
+        { "value": "d", "label": "Tiny pyramids" }
+      ],
+      "correct": "b",
+      "explanation": "Wombats produce cube-shaped droppings, which helps them stay put when used to mark territory."
+    },
+    {
+      "id": "d03",
+      "short": "flamingo color",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "easy",
+      "prompt": "Why are flamingos pink?",
+      "options": [
+        { "value": "a", "label": "They are born pink" },
+        { "value": "b", "label": "Sunburn" },
+        { "value": "c", "label": "Pigments in the shrimp and algae they eat" },
+        { "value": "d", "label": "They blush constantly" }
+      ],
+      "correct": "c",
+      "explanation": "Carotenoid pigments in their diet turn flamingo feathers pink; chicks hatch grey."
+    },
+    {
+      "id": "d04",
+      "short": "sloth bathroom",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "medium",
+      "prompt": "About how often does a three-toed sloth climb down from its tree to use the bathroom?",
+      "options": [
+        { "value": "a", "label": "Every hour" },
+        { "value": "b", "label": "Once a day" },
+        { "value": "c", "label": "About once a week" },
+        { "value": "d", "label": "Once a year" }
+      ],
+      "correct": "c",
+      "explanation": "Three-toed sloths descend roughly once a week to relieve themselves at the base of their tree."
+    },
+    {
+      "id": "d05",
+      "short": "crows group",
+      "type": "radio",
+      "category": "Words",
+      "difficulty": "easy",
+      "prompt": "What is a group of crows traditionally called?",
+      "options": [
+        { "value": "a", "label": "A murder" },
+        { "value": "b", "label": "A parliament" },
+        { "value": "c", "label": "A pride" },
+        { "value": "d", "label": "A cackle" }
+      ],
+      "correct": "a",
+      "explanation": "A 'murder' of crows; a 'parliament' is the term for owls."
+    },
+    {
+      "id": "d06",
+      "short": "otters holding hands",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "easy",
+      "prompt": "Why do sea otters sometimes hold hands while sleeping?",
+      "options": [
+        { "value": "a", "label": "To keep from drifting apart" },
+        { "value": "b", "label": "To stay warm" },
+        { "value": "c", "label": "It is a mating ritual only" },
+        { "value": "d", "label": "To scare away sharks" }
+      ],
+      "correct": "a",
+      "explanation": "Rafting otters hold paws or wrap themselves in kelp so they don't float away while napping."
+    },
+    {
+      "id": "d07",
+      "short": "cow best friends",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "medium",
+      "prompt": "Studies suggest cows get less stressed when they are with what?",
+      "options": [
+        { "value": "a", "label": "Classical music" },
+        { "value": "b", "label": "Their best friend" },
+        { "value": "c", "label": "A mirror" },
+        { "value": "d", "label": "A goat named Gary" }
+      ],
+      "correct": "b",
+      "explanation": "Research on dairy heifers found lower stress responses when they were paired with a preferred companion."
+    },
+    {
+      "id": "d08",
+      "short": "shrimp heart",
+      "type": "radio",
+      "category": "Animals",
+      "difficulty": "hard",
+      "prompt": "Where is a shrimp's heart located?",
+      "options": [
+        { "value": "a", "label": "In its tail" },
+        { "value": "b", "label": "In its head" },
+        { "value": "c", "label": "In its legs" },
+        { "value": "d", "label": "Shrimp have no heart" }
+      ],
+      "correct": "b",
+      "explanation": "A shrimp's heart sits in its head region (the cephalothorax)."
+    },
+    {
+      "id": "d09",
+      "short": "bananas berries",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "medium",
+      "prompt": "Botanically speaking, which of these is a berry?",
+      "options": [
+        { "value": "a", "label": "Strawberry" },
+        { "value": "b", "label": "Raspberry" },
+        { "value": "c", "label": "Banana" },
+        { "value": "d", "label": "Blackberry" }
+      ],
+      "correct": "c",
+      "explanation": "Bananas qualify as botanical berries; strawberries, raspberries, and blackberries do not."
+    },
+    {
+      "id": "d10",
+      "short": "honey spoil",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "easy",
+      "prompt": "Properly sealed honey can last how long?",
+      "options": [
+        { "value": "a", "label": "About a week" },
+        { "value": "b", "label": "About a year" },
+        { "value": "c", "label": "About ten years" },
+        { "value": "d", "label": "Practically forever" }
+      ],
+      "correct": "d",
+      "explanation": "Honey's low moisture and acidity keep it edible for a very long time; edible honey has been reported in ancient tombs."
+    },
+    {
+      "id": "d11",
+      "short": "pizza margherita",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "medium",
+      "prompt": "Pizza Margherita is traditionally said to be named after whom?",
+      "options": [
+        { "value": "a", "label": "A queen of Italy" },
+        { "value": "b", "label": "A famous chef's cat" },
+        { "value": "c", "label": "A cocktail" },
+        { "value": "d", "label": "A Neapolitan opera singer" }
+      ],
+      "correct": "a",
+      "explanation": "The popular story credits Queen Margherita of Savoy, with the toppings echoing the Italian flag."
+    },
+    {
+      "id": "d12",
+      "short": "carrots color",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "medium",
+      "prompt": "Before orange carrots became common, carrots were most often which colors?",
+      "options": [
+        { "value": "a", "label": "Blue and green" },
+        { "value": "b", "label": "Purple and yellow" },
+        { "value": "c", "label": "Black and white stripes" },
+        { "value": "d", "label": "Bright pink" }
+      ],
+      "correct": "b",
+      "explanation": "Early cultivated carrots were mostly purple or yellow; orange varieties spread later."
+    },
+    {
+      "id": "d13",
+      "short": "peanuts",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "easy",
+      "prompt": "Peanuts are not actually nuts. What are they?",
+      "options": [
+        { "value": "a", "label": "Seeds of a tree" },
+        { "value": "b", "label": "Legumes" },
+        { "value": "c", "label": "Tubers" },
+        { "value": "d", "label": "Fungi" }
+      ],
+      "correct": "b",
+      "explanation": "Peanuts are legumes, related to beans and peas, and grow underground."
+    },
+    {
+      "id": "d14",
+      "short": "ketchup medicine",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "hard",
+      "prompt": "In the 1830s, tomato ketchup was sold in the US as what?",
+      "options": [
+        { "value": "a", "label": "Hair dye" },
+        { "value": "b", "label": "Medicine" },
+        { "value": "c", "label": "Paint" },
+        { "value": "d", "label": "Shoe polish" }
+      ],
+      "correct": "b",
+      "explanation": "Tomato extracts were briefly marketed as a remedy for indigestion and other ailments."
+    },
+    {
+      "id": "d15",
+      "short": "cheese most stolen",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "medium",
+      "prompt": "Which food is often cited as one of the most shoplifted in the world?",
+      "options": [
+        { "value": "a", "label": "Cheese" },
+        { "value": "b", "label": "Broccoli" },
+        { "value": "c", "label": "Rice cakes" },
+        { "value": "d", "label": "Celery" }
+      ],
+      "correct": "a",
+      "explanation": "Retail crime surveys have repeatedly put cheese near the top of the most-stolen food list."
+    },
+    {
+      "id": "d16",
+      "short": "potato space",
+      "type": "radio",
+      "category": "Food",
+      "difficulty": "hard",
+      "prompt": "In 1995, which vegetable became the first grown in space?",
+      "options": [
+        { "value": "a", "label": "Lettuce" },
+        { "value": "b", "label": "Potato" },
+        { "value": "c", "label": "Carrot" },
+        { "value": "d", "label": "Pumpkin" }
+      ],
+      "correct": "b",
+      "explanation": "Potato plants were grown aboard the Space Shuttle Columbia in 1995."
+    },
+    {
+      "id": "d17",
+      "short": "venus day",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "medium",
+      "prompt": "On Venus, which is longer?",
+      "options": [
+        { "value": "a", "label": "A day" },
+        { "value": "b", "label": "A year" },
+        { "value": "c", "label": "They are exactly equal" },
+        { "value": "d", "label": "Venus has no days" }
+      ],
+      "correct": "a",
+      "explanation": "Venus rotates so slowly that one rotation takes longer than one orbit around the Sun."
+    },
+    {
+      "id": "d18",
+      "short": "space smell",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "medium",
+      "prompt": "Astronauts have described the smell lingering on spacesuits after a spacewalk as similar to what?",
+      "options": [
+        { "value": "a", "label": "Fresh roses" },
+        { "value": "b", "label": "Seared steak and hot metal" },
+        { "value": "c", "label": "Wet dog" },
+        { "value": "d", "label": "Bubble gum" }
+      ],
+      "correct": "b",
+      "explanation": "Astronauts often describe a burnt, metallic odor, like seared steak or welding fumes."
+    },
+    {
+      "id": "d19",
+      "short": "moon footprints",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "easy",
+      "prompt": "Why are the Apollo footprints on the Moon likely to last for a very long time?",
+      "options": [
+        { "value": "a", "label": "NASA laminated them" },
+        { "value": "b", "label": "There is no wind or rain to erode them" },
+        { "value": "c", "label": "Moon dust is magnetic" },
+        { "value": "d", "label": "They were made in cement" }
+      ],
+      "correct": "b",
+      "explanation": "With no atmosphere, there is no weather to wipe them away."
+    },
+    {
+      "id": "d20",
+      "short": "pluto naming",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "hard",
+      "prompt": "The name 'Pluto' was suggested by whom?",
+      "options": [
+        { "value": "a", "label": "An 11-year-old girl from Oxford" },
+        { "value": "b", "label": "Walt Disney" },
+        { "value": "c", "label": "The President of the United States" },
+        { "value": "d", "label": "A Greek astronomer" }
+      ],
+      "correct": "a",
+      "explanation": "Venetia Burney, aged 11, suggested the name in 1930."
+    },
+    {
+      "id": "d21",
+      "short": "sun stars",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "easy",
+      "prompt": "What is the Sun?",
+      "options": [
+        { "value": "a", "label": "A planet" },
+        { "value": "b", "label": "A star" },
+        { "value": "c", "label": "A very large light bulb" },
+        { "value": "d", "label": "A comet" }
+      ],
+      "correct": "b",
+      "explanation": "The Sun is a G-type main-sequence star."
+    },
+    {
+      "id": "d22",
+      "short": "saturn float",
+      "type": "radio",
+      "category": "Space",
+      "difficulty": "medium",
+      "prompt": "Saturn's average density is low enough that, in theory, it would do what in a big enough bathtub?",
+      "options": [
+        { "value": "a", "label": "Sink immediately" },
+        { "value": "b", "label": "Float" },
+        { "value": "c", "label": "Explode" },
+        { "value": "d", "label": "Turn the water into ice" }
+      ],
+      "correct": "b",
+      "explanation": "Saturn's mean density is less than that of water."
+    },
+    {
+      "id": "d23",
+      "short": "rubber duck",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "medium",
+      "prompt": "'Rubber duck debugging' means doing what?",
+      "options": [
+        { "value": "a", "label": "Explaining your code line by line to a rubber duck" },
+        { "value": "b", "label": "Testing code in the bathtub" },
+        { "value": "c", "label": "Deleting code until the bug quacks" },
+        { "value": "d", "label": "Writing tests in yellow" }
+      ],
+      "correct": "a",
+      "explanation": "Explaining a problem out loud, even to a toy, often reveals the bug."
+    },
+    {
+      "id": "d24",
+      "short": "spongebob home",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "easy",
+      "prompt": "SpongeBob SquarePants lives in what?",
+      "options": [
+        { "value": "a", "label": "A pineapple under the sea" },
+        { "value": "b", "label": "A coconut on the beach" },
+        { "value": "c", "label": "A treasure chest" },
+        { "value": "d", "label": "A rock" }
+      ],
+      "correct": "a",
+      "explanation": "The theme song asks who lives in a pineapple under the sea. Patrick is the one under the rock."
+    },
+    {
+      "id": "d25",
+      "short": "pac-man pizza",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "medium",
+      "prompt": "Pac-Man's shape was reportedly inspired by what?",
+      "options": [
+        { "value": "a", "label": "A pizza with a slice missing" },
+        { "value": "b", "label": "A full moon" },
+        { "value": "c", "label": "A hungry goldfish" },
+        { "value": "d", "label": "A cookie" }
+      ],
+      "correct": "a",
+      "explanation": "Creator Toru Iwatani said the idea came from a pizza with one slice removed."
+    },
+    {
+      "id": "d26",
+      "short": "mario job",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "easy",
+      "prompt": "What is Mario's profession in the Super Mario games?",
+      "options": [
+        { "value": "a", "label": "Chef" },
+        { "value": "b", "label": "Plumber" },
+        { "value": "c", "label": "Electrician" },
+        { "value": "d", "label": "Mushroom farmer" }
+      ],
+      "correct": "b",
+      "explanation": "Mario is famously a plumber (he was a carpenter in his first appearance, Donkey Kong)."
+    },
+    {
+      "id": "d27",
+      "short": "yoda age",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "hard",
+      "prompt": "About how old was Yoda when he died in Return of the Jedi?",
+      "options": [
+        { "value": "a", "label": "300" },
+        { "value": "b", "label": "600" },
+        { "value": "c", "label": "900" },
+        { "value": "d", "label": "1,200" }
+      ],
+      "correct": "c",
+      "explanation": "Yoda says 'When nine hundred years old you reach, look as good you will not.'"
+    },
+    {
+      "id": "d28",
+      "short": "tetris origin",
+      "type": "radio",
+      "category": "Pop culture",
+      "difficulty": "medium",
+      "prompt": "Tetris was originally created in which country?",
+      "options": [
+        { "value": "a", "label": "Japan" },
+        { "value": "b", "label": "United States" },
+        { "value": "c", "label": "Soviet Union" },
+        { "value": "d", "label": "Finland" }
+      ],
+      "correct": "c",
+      "explanation": "Alexey Pajitnov created Tetris in Moscow in 1984."
+    },
+    {
+      "id": "d29",
+      "short": "bubble wrap",
+      "type": "radio",
+      "category": "Inventions",
+      "difficulty": "hard",
+      "prompt": "Bubble wrap was originally invented as what?",
+      "options": [
+        { "value": "a", "label": "Textured wallpaper" },
+        { "value": "b", "label": "A stress toy" },
+        { "value": "c", "label": "Packaging for eggs" },
+        { "value": "d", "label": "A swimming aid" }
+      ],
+      "correct": "a",
+      "explanation": "Its inventors first tried to sell it as a textured wallpaper in 1957."
+    },
+    {
+      "id": "d30",
+      "short": "play-doh",
+      "type": "radio",
+      "category": "Inventions",
+      "difficulty": "hard",
+      "prompt": "Play-Doh was originally sold as what?",
+      "options": [
+        { "value": "a", "label": "Bread dough" },
+        { "value": "b", "label": "Wallpaper cleaner" },
+        { "value": "c", "label": "Window putty" },
+        { "value": "d", "label": "Cookie dough" }
+      ],
+      "correct": "b",
+      "explanation": "It began as a putty for cleaning soot off wallpaper before being remarketed as a toy."
+    },
+    {
+      "id": "d31",
+      "short": "popsicle kid",
+      "type": "radio",
+      "category": "Inventions",
+      "difficulty": "medium",
+      "prompt": "According to legend, the Popsicle was invented by accident by whom?",
+      "options": [
+        { "value": "a", "label": "An 11-year-old who left a drink outside overnight" },
+        { "value": "b", "label": "A polar explorer" },
+        { "value": "c", "label": "An ice cream truck driver" },
+        { "value": "d", "label": "A dentist" }
+      ],
+      "correct": "a",
+      "explanation": "Frank Epperson reportedly left soda with a stirring stick on his porch on a cold night in 1905."
+    },
+    {
+      "id": "d32",
+      "short": "microwave chocolate",
+      "type": "radio",
+      "category": "Inventions",
+      "difficulty": "medium",
+      "prompt": "The microwave oven was inspired when a radar engineer noticed what had melted in his pocket?",
+      "options": [
+        { "value": "a", "label": "A crayon" },
+        { "value": "b", "label": "A chocolate bar" },
+        { "value": "c", "label": "An ice cube" },
+        { "value": "d", "label": "A stick of butter" }
+      ],
+      "correct": "b",
+      "explanation": "Percy Spencer noticed a candy bar melting near an active magnetron."
+    },
+    {
+      "id": "d33",
+      "short": "sticky note",
+      "type": "radio",
+      "category": "Inventions",
+      "difficulty": "easy",
+      "prompt": "The adhesive on sticky notes came from what?",
+      "options": [
+        { "value": "a", "label": "A failed attempt to make a super-strong glue" },
+        { "value": "b", "label": "Tree sap" },
+        { "value": "c", "label": "Chewing gum research" },
+        { "value": "d", "label": "Snail slime" }
+      ],
+      "correct": "a",
+      "explanation": "A 3M chemist trying to make a strong adhesive created a weak, reusable one instead."
+    },
+    {
+      "id": "d34",
+      "short": "hiccup record",
+      "type": "radio",
+      "category": "Human body",
+      "difficulty": "hard",
+      "prompt": "The record for the longest bout of hiccups lasted roughly how long?",
+      "options": [
+        { "value": "a", "label": "3 days" },
+        { "value": "b", "label": "3 months" },
+        { "value": "c", "label": "68 years" },
+        { "value": "d", "label": "12 minutes" }
+      ],
+      "correct": "c",
+      "explanation": "Charles Osborne reportedly hiccupped from 1922 to 1990."
+    },
+    {
+      "id": "d35",
+      "short": "sneeze eyes",
+      "type": "radio",
+      "category": "Human body",
+      "difficulty": "easy",
+      "prompt": "What happens if you sneeze with your eyes open?",
+      "options": [
+        { "value": "a", "label": "Your eyes pop out" },
+        { "value": "b", "label": "Nothing dramatic; it is just hard to do" },
+        { "value": "c", "label": "You see the future" },
+        { "value": "d", "label": "You sneeze twice as hard" }
+      ],
+      "correct": "b",
+      "explanation": "Closing your eyes is a reflex, but your eyes will not pop out if you manage to keep them open."
+    },
+    {
+      "id": "d36",
+      "short": "bones baby",
+      "type": "radio",
+      "category": "Human body",
+      "difficulty": "medium",
+      "prompt": "Compared to adults, newborn babies have how many bones?",
+      "options": [
+        { "value": "a", "label": "Fewer" },
+        { "value": "b", "label": "More" },
+        { "value": "c", "label": "Exactly the same" },
+        { "value": "d", "label": "None until age two" }
+      ],
+      "correct": "b",
+      "explanation": "Babies have around 300 bones; many fuse over time, leaving adults with about 206."
+    },
+    {
+      "id": "d37",
+      "short": "funny bone",
+      "type": "radio",
+      "category": "Human body",
+      "difficulty": "medium",
+      "prompt": "Funny bone pain actually comes from hitting what?",
+      "options": [
+        { "value": "a", "label": "A bone called the humerus" },
+        { "value": "b", "label": "The ulnar nerve" },
+        { "value": "c", "label": "A tendon" },
+        { "value": "d", "label": "Your sense of humor" }
+      ],
+      "correct": "b",
+      "explanation": "The tingle comes from the ulnar nerve near the elbow; the 'humerus' pun is just a bonus."
+    },
+    {
+      "id": "d38",
+      "short": "eiffel growth",
+      "type": "radio",
+      "category": "Geography",
+      "difficulty": "medium",
+      "prompt": "Why can the Eiffel Tower be several centimeters taller in summer?",
+      "options": [
+        { "value": "a", "label": "Thermal expansion of the iron" },
+        { "value": "b", "label": "Tourists stand on top" },
+        { "value": "c", "label": "It is repainted every summer" },
+        { "value": "d", "label": "Paris rises in the heat" }
+      ],
+      "correct": "a",
+      "explanation": "Heat causes the iron to expand, adding height on hot days."
+    },
+    {
+      "id": "d39",
+      "short": "scotland animal",
+      "type": "radio",
+      "category": "Geography",
+      "difficulty": "easy",
+      "prompt": "What is the national animal of Scotland?",
+      "options": [
+        { "value": "a", "label": "Highland cow" },
+        { "value": "b", "label": "Unicorn" },
+        { "value": "c", "label": "Loch Ness Monster" },
+        { "value": "d", "label": "Red deer" }
+      ],
+      "correct": "b",
+      "explanation": "The unicorn has been a Scottish heraldic symbol for centuries."
+    },
+    {
+      "id": "d40",
+      "short": "australia width",
+      "type": "radio",
+      "category": "Geography",
+      "difficulty": "hard",
+      "prompt": "Which is wider from east to west, Australia or the Moon?",
+      "options": [
+        { "value": "a", "label": "The Moon" },
+        { "value": "b", "label": "Australia" },
+        { "value": "c", "label": "They are identical" },
+        { "value": "d", "label": "It depends on the tide" }
+      ],
+      "correct": "b",
+      "explanation": "Australia spans about 4,000 km east to west; the Moon's diameter is about 3,475 km."
+    },
+    {
+      "id": "d41",
+      "short": "canada lakes",
+      "type": "radio",
+      "category": "Geography",
+      "difficulty": "medium",
+      "prompt": "Which country is often said to have more lakes than the rest of the world combined?",
+      "options": [
+        { "value": "a", "label": "Finland" },
+        { "value": "b", "label": "Brazil" },
+        { "value": "c", "label": "Canada" },
+        { "value": "d", "label": "Switzerland" }
+      ],
+      "correct": "c",
+      "explanation": "Canada holds a majority of the world's large lakes by most counts."
+    },
+    {
+      "id": "d42",
+      "short": "llanfair",
+      "type": "radio",
+      "category": "Geography",
+      "difficulty": "hard",
+      "prompt": "The village with one of the longest place names in Europe, Llanfairpwllgwyngyll..., is in which country?",
+      "options": [
+        { "value": "a", "label": "Ireland" },
+        { "value": "b", "label": "Wales" },
+        { "value": "c", "label": "Iceland" },
+        { "value": "d", "label": "Poland" }
+      ],
+      "correct": "b",
+      "explanation": "The village is on the island of Anglesey in Wales."
+    },
+    {
+      "id": "d43",
+      "short": "hippo milk",
+      "type": "radio",
+      "category": "Myths",
+      "difficulty": "easy",
+      "prompt": "Is hippo milk pink?",
+      "options": [
+        { "value": "a", "label": "Yes, always" },
+        { "value": "b", "label": "No, that is a popular myth" },
+        { "value": "c", "label": "Only on Tuesdays" },
+        { "value": "d", "label": "It is blue" }
+      ],
+      "correct": "b",
+      "explanation": "Hippo milk is white; the pink story came from a mix-up about the reddish 'blood sweat' on their skin."
+    },
+    {
+      "id": "d44",
+      "short": "goldfish memory",
+      "type": "radio",
+      "category": "Myths",
+      "difficulty": "easy",
+      "prompt": "How long can a goldfish remember things?",
+      "options": [
+        { "value": "a", "label": "Three seconds" },
+        { "value": "b", "label": "Months" },
+        { "value": "c", "label": "Exactly one lap of the bowl" },
+        { "value": "d", "label": "Goldfish have no memory" }
+      ],
+      "correct": "b",
+      "explanation": "Experiments show goldfish can learn and remember tasks for months."
+    },
+    {
+      "id": "d45",
+      "short": "great wall space",
+      "type": "radio",
+      "category": "Myths",
+      "difficulty": "medium",
+      "prompt": "Can you easily see the Great Wall of China from the Moon with the naked eye?",
+      "options": [
+        { "value": "a", "label": "Yes, it glows" },
+        { "value": "b", "label": "No" },
+        { "value": "c", "label": "Only during a full moon" },
+        { "value": "d", "label": "Only with sunglasses" }
+      ],
+      "correct": "b",
+      "explanation": "The wall is far too narrow to see from the Moon, and it is hard to spot even from low orbit."
+    },
+    {
+      "id": "d46",
+      "short": "bulls red",
+      "type": "radio",
+      "category": "Myths",
+      "difficulty": "medium",
+      "prompt": "What actually provokes a bull during a bullfight?",
+      "options": [
+        { "value": "a", "label": "The red color of the cape" },
+        { "value": "b", "label": "The movement of the cape" },
+        { "value": "c", "label": "The smell of paella" },
+        { "value": "d", "label": "Loud trumpets" }
+      ],
+      "correct": "b",
+      "explanation": "Bulls are largely red-green colorblind; motion is what they react to."
+    },
+    {
+      "id": "d47",
+      "short": "lightning twice",
+      "type": "radio",
+      "category": "Myths",
+      "difficulty": "easy",
+      "prompt": "Can lightning strike the same place twice?",
+      "options": [
+        { "value": "a", "label": "Never" },
+        { "value": "b", "label": "Yes, and tall buildings get struck many times a year" },
+        { "value": "c", "label": "Only in leap years" },
+        { "value": "d", "label": "Only if it forgets" }
+      ],
+      "correct": "b",
+      "explanation": "The Empire State Building is struck around 20 times a year."
+    },
+    {
+      "id": "d48",
+      "short": "long words fear",
+      "type": "radio",
+      "category": "Words",
+      "difficulty": "medium",
+      "prompt": "What is the fear of long words, ironically, called?",
+      "options": [
+        { "value": "a", "label": "Hippopotomonstrosesquippedaliophobia" },
+        { "value": "b", "label": "Logophobia" },
+        { "value": "c", "label": "Wordaphobia" },
+        { "value": "d", "label": "Lexicaphobia" }
+      ],
+      "correct": "a",
+      "explanation": "It is a tongue-in-cheek coinage; the more serious term is sesquipedalophobia."
+    },
+    {
+      "id": "d49",
+      "short": "pangram",
+      "type": "radio",
+      "category": "Words",
+      "difficulty": "easy",
+      "prompt": "'The quick brown fox jumps over the lazy dog' is famous because it does what?",
+      "options": [
+        { "value": "a", "label": "Uses every letter of the English alphabet" },
+        { "value": "b", "label": "Is a palindrome" },
+        { "value": "c", "label": "Has no vowels" },
+        { "value": "d", "label": "Was the first sentence ever typed" }
+      ],
+      "correct": "a",
+      "explanation": "It is a pangram, a sentence containing every letter at least once."
+    },
+    {
+      "id": "d50",
+      "short": "bookkeeper",
+      "type": "radio",
+      "category": "Words",
+      "difficulty": "hard",
+      "prompt": "Which common English word has three consecutive double letters?",
+      "options": [
+        { "value": "a", "label": "Mississippi" },
+        { "value": "b", "label": "Bookkeeper" },
+        { "value": "c", "label": "Balloon" },
+        { "value": "d", "label": "Committee" }
+      ],
+      "correct": "b",
+      "explanation": "Book-keeper: oo, kk, ee in a row."
+    }
+  ]
+}

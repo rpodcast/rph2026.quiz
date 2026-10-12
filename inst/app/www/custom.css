@@ -1,0 +1,52 @@
+.quiz-main {
+  max-width: 820px;
+}
+
+.quiz-timer {
+  font-variant-numeric: tabular-nums;
+  min-width: 4.5rem;
+}
+
+.quiz-prompt {
+  line-height: 1.4;
+}
+
+.shiny-options-group .radio {
+  margin-bottom: 0.5rem;
+}
+
+.shiny-options-group .radio label {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+  cursor: pointer;
+}
+
+.shiny-options-group .radio label:has(input:checked) {
+  border-color: var(--bs-primary);
+  background-color: rgba(var(--bs-primary-rgb), 0.08);
+}
+
+.quiz-nav-btn {
+  min-width: 2.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.quiz-nav-current {
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.45);
+  font-weight: 600;
+}
+
+.review-item {
+  border-left-width: 4px;
+}
+
+.review-correct {
+  border-left-color: var(--bs-success);
+}
+
+.review-incorrect {
+  border-left-color: var(--bs-danger);
+}

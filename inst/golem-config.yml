@@ -1,0 +1,41 @@
+default:
+  golem_name: rpharma2026.quiz
+  golem_version: 0.0.0.9000
+  app_prod: no
+  # Quiz bank JSON: a path relative to inst/app, or s3://bucket/key for
+  # S3-compatible object storage (credentials from AWS_* environment
+  # variables). This is a silly placeholder bank; the real questions are kept
+  # out of the repository.
+  quiz_bank: quiz/dev_quiz.json
+  # Questions drawn at random from the bank for each user
+  quiz_n_questions: 15
+  # Time limit for the whole quiz
+  quiz_time_limit_minutes: 10
+  # Network slack (seconds) when checking answers against the deadline
+  quiz_grace_seconds: 5
+  leaderboard_size: 10
+  # mock = fixed test user; ricochet = verified X-Ricochet-User JWT
+  auth_mode: mock
+  # sqlite = local file; postgres = credentials from PG_HOST, PG_PORT,
+  # PG_DATABASE, PG_USER, PG_PASSWORD, PG_SSL_MODE environment variables
+  db_backend: sqlite
+  # Ricochet keeps persistent/ across deployments and instances
+  sqlite_path: persistent/quiz.sqlite3
+
+production:
+  app_prod: yes
+  # Real questions, private bucket on Linode Object Storage
+  quiz_bank: s3://rpodcast-misc/rpharma_quiz.json
+  auth_mode: ricochet
+  db_backend: postgres
+
+# Production data sources run locally: real bank and Postgres, but the mock
+# test user instead of the Ricochet header. Its answers are written to the
+# production database.
+local_production:
+  quiz_bank: s3://rpodcast-misc/rpharma_quiz.json
+  auth_mode: mock
+  db_backend: postgres
+
+dev:
+  golem_wd: !expr golem::pkg_path()

@@ -1,0 +1,19 @@
+[content]
+name = "R/Pharma Quiz"
+summary = "Timed 15-question R/Pharma quiz with a leaderboard."
+entrypoint = "app.R"
+access_type = "external"
+content_type = "shiny"
+
+[language]
+name = "r"
+packages = "renv.lock"
+
+[packages]
+r = { CRAN = "https://cran.rpkgs.com/" }
+
+[serve]
+min_instances = 0
+max_instances = 5
+spawn_threshold = 80
+max_connections = 10

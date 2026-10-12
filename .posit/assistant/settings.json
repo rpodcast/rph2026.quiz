@@ -1,0 +1,37 @@
+{
+  "permission": {
+    "executeCode": {
+      "*": "allow"
+    },
+    "edit": {
+      "*.R": "allow",
+      "*.yml": "allow",
+      "*.css": "allow",
+      "*.toml": "allow",
+      "*/.renvignore": "allow",
+      "*/.gitignore": "allow",
+      "*/.Rbuildignore": "allow",
+      "*.js": "allow",
+      "*.json": "allow",
+      "*.md": "allow"
+    },
+    "bash": {
+      "/home/eric/.positron-server/extensions/posit.air-vscode-0.30.0-linux-x64/bundled/bin/air *": "allow",
+      "git status *": "allow",
+      "head *": "allow",
+      "cd *": "allow",
+      "timeout *": "allow",
+      "cat *": "allow",
+      "sleep *": "allow",
+      "Rscript *": "allow",
+      "tail *": "allow",
+      "sed *": "allow"
+    },
+    "external_directory": {
+      "/home/eric/snap/firefox/common/pa-navtest/*": "allow"
+    }
+  },
+  "features": {
+    "autoCompactTokenBuffer": 90000
+  }
+}

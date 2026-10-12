@@ -14,6 +14,6 @@ r = { CRAN = "https://cran.rpkgs.com/" }
 
 [serve]
 min_instances = 0
-max_instances = 5
+max_instances = 15
 spawn_threshold = 80
 max_connections = 10

@@ -1,46 +1,330 @@
+/* Chalkboard classroom theme. Colors come from quiz_theme() in
+   R/utils_theme.R through Bootstrap CSS variables. */
+
+@font-face {
+  font-family: "Walter Turncoat";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/WalterTurncoat-latin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Patrick Hand";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/PatrickHand-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Patrick Hand";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/PatrickHand-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --chalk-frame: #9a6a3a;
+  --chalk-frame-dark: #6e4724;
+  --chalk-line: rgba(242, 240, 230, 0.45);
+  --chalk-dust: rgba(242, 240, 230, 0.06);
+  --chalk-heading-font: "Walter Turncoat", "Patrick Hand", cursive;
+}
+
+/* The classroom wall behind the board */
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top, #5b6b78 0%, #3b4650 55%, #29323c 100%)
+    fixed;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* The board: green slate, chalk smudges, wooden frame */
+.chalkboard {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: var(--bs-body-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(255, 255, 255, 0.07), transparent 45%),
+    radial-gradient(ellipse at 80% 70%, rgba(255, 255, 255, 0.05), transparent 50%),
+    radial-gradient(ellipse at 50% 100%, rgba(0, 0, 0, 0.25), transparent 60%),
+    repeating-linear-gradient(
+      -12deg,
+      var(--chalk-dust) 0 2px,
+      transparent 2px 140px
+    );
+  border: 14px solid var(--chalk-frame);
+  border-color: #b07c46 var(--chalk-frame) var(--chalk-frame-dark)
+    var(--chalk-frame);
+  border-radius: 6px;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.55),
+    0 12px 30px rgba(0, 0, 0, 0.45);
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 2.5rem;
+}
+
+/* Chalk ledge with chalk sticks and an eraser */
+.chalk-tray {
+  position: absolute;
+  left: -14px;
+  right: -14px;
+  bottom: -30px;
+  height: 18px;
+  background: linear-gradient(#b07c46, var(--chalk-frame-dark));
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.chalk-stick,
+.chalk-eraser {
+  position: absolute;
+  bottom: 12px;
+  display: block;
+}
+
+.chalk-stick {
+  right: 18%;
+  width: 46px;
+  height: 9px;
+  border-radius: 3px;
+  background: #f4f2ea;
+  box-shadow: inset 0 -3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.chalk-stick-yellow {
+  right: calc(18% + 60px);
+  width: 34px;
+  background: var(--bs-primary);
+  transform: rotate(-4deg);
+}
+
+.chalk-eraser {
+  right: 6%;
+  width: 72px;
+  height: 18px;
+  border-radius: 3px;
+  background: linear-gradient(#8a5a33 0 55%, #e6e2d6 55%);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.35);
+}
+
+/* Chalk text */
+body {
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 1px rgba(242, 240, 230, 0.35);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  letter-spacing: 0.02em;
+}
+
+.quiz-header {
+  border-bottom: 2px dashed var(--chalk-line);
+}
+
+.quiz-title {
+  font-family: var(--chalk-heading-font);
+  font-size: clamp(1.4rem, 2.5vw + 0.8rem, 2.2rem);
+}
+
+.quiz-user {
+  opacity: 0.85;
+}
+
+.text-muted,
+.text-body-secondary {
+  color: rgba(242, 240, 230, 0.75) !important;
+}
+
 .quiz-main {
   max-width: 820px;
 }
 
+/* Cards look like boxes drawn in chalk, not paper on the board */
+.card,
+.list-group-item,
+.modal-content {
+  background-color: rgba(0, 0, 0, 0.12);
+  border: 2px solid var(--chalk-line);
+  border-radius: 14px 10px 16px 9px / 10px 15px 9px 14px;
+  color: var(--bs-body-color);
+}
+
+.card-header,
+.card-footer {
+  background-color: transparent;
+  border-color: var(--chalk-line);
+  border-style: dashed;
+}
+
+.modal-content {
+  background-color: var(--bs-body-bg);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.45);
+}
+
+.modal-header,
+.modal-footer {
+  border-color: var(--chalk-line);
+}
+
+.btn-close {
+  filter: invert(1) grayscale(100%) brightness(200%);
+}
+
+/* Buttons: chalk outlines, filled with chalk on hover */
+.btn {
+  border-width: 2px;
+  border-radius: 12px 8px 12px 9px / 9px 12px 8px 12px;
+  font-size: 1.1em;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary,
+.btn-primary:disabled {
+  color: var(--bs-body-bg);
+}
+
+.btn-outline-secondary {
+  color: var(--bs-body-color);
+  border-color: var(--chalk-line);
+}
+
+/* Value boxes on the results screen */
+.bslib-value-box {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  color: var(--bs-body-color) !important;
+  border: 2px solid var(--chalk-line) !important;
+}
+
+.bslib-value-box .value-box-value {
+  font-family: var(--chalk-heading-font);
+  color: var(--bs-primary);
+}
+
+/* Timer: a chalk "clock" on the board */
 .quiz-timer {
+  font-family: var(--chalk-heading-font);
   font-variant-numeric: tabular-nums;
-  min-width: 4.5rem;
+  min-width: 5rem;
+  border: 2px solid currentColor;
+  text-shadow: none;
+}
+
+.quiz-timer.text-bg-secondary {
+  background-color: transparent !important;
+  color: var(--bs-body-color) !important;
+}
+
+/* Progress bar drawn as a chalk outline */
+.progress {
+  background-color: transparent;
+  border: 2px solid var(--chalk-line);
+  height: 0.9rem;
+}
+
+.progress-bar {
+  background-color: var(--bs-primary);
 }
 
 .quiz-prompt {
   line-height: 1.4;
+  font-family: var(--bs-body-font-family);
+  font-size: 1.6rem;
 }
 
+/* Answer choices: chalk-drawn boxes, circled in yellow when picked */
 .shiny-options-group .radio {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .shiny-options-group .radio label {
   display: block;
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--bs-border-color);
-  border-radius: var(--bs-border-radius);
+  padding: 0.6rem 0.9rem;
+  border: 2px solid var(--chalk-line);
+  border-radius: 14px 9px 13px 10px / 10px 14px 9px 13px;
   cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.shiny-options-group .radio label:hover {
+  background-color: rgba(242, 240, 230, 0.06);
 }
 
 .shiny-options-group .radio label:has(input:checked) {
   border-color: var(--bs-primary);
-  background-color: rgba(var(--bs-primary-rgb), 0.08);
+  background-color: rgba(var(--bs-primary-rgb), 0.12);
+  color: var(--bs-primary);
 }
 
+.form-check-input {
+  background-color: transparent;
+  border: 2px solid var(--bs-body-color);
+}
+
+.form-check-input:checked {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+/* Question navigator */
 .quiz-nav-btn {
-  min-width: 2.25rem;
+  min-width: 2.4rem;
   font-variant-numeric: tabular-nums;
 }
 
 .quiz-nav-current {
-  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.45);
+  box-shadow: 0 0 0 0.2rem rgba(var(--bs-primary-rgb), 0.55);
   font-weight: 600;
 }
 
+/* Leaderboard table */
+.table {
+  --bs-table-bg: transparent;
+  --bs-table-color: var(--bs-body-color);
+  --bs-table-striped-bg: rgba(242, 240, 230, 0.06);
+  --bs-table-striped-color: var(--bs-body-color);
+  --bs-table-border-color: var(--chalk-line);
+}
+
+.table th {
+  font-family: var(--chalk-heading-font);
+  font-weight: 400;
+}
+
+.table strong {
+  color: var(--bs-primary);
+}
+
+/* Answer review: green tick or pink cross side marks */
 .review-item {
-  border-left-width: 4px;
+  border-left-width: 6px;
+  margin-bottom: 0.5rem;
 }
 
 .review-correct {
@@ -49,4 +333,29 @@
 
 .review-incorrect {
   border-left-color: var(--bs-danger);
+}
+
+.badge {
+  text-shadow: none;
+}
+
+@media (max-width: 576px) {
+  body {
+    padding: 0.5rem 0.25rem 2.5rem;
+  }
+
+  .chalkboard {
+    border-width: 8px;
+  }
+
+  .chalk-tray {
+    left: -8px;
+    right: -8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shiny-options-group .radio label {
+    transition: none;
+  }
 }

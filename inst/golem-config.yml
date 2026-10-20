@@ -1,6 +1,6 @@
 default:
   golem_name: rpharma2026.quiz
-  golem_version: 0.0.0.9000
+  golem_version: 0.0.0.9001
   app_prod: no
   # Quiz bank JSON: a path relative to inst/app, or s3://bucket/key for
   # S3-compatible object storage (credentials from AWS_* environment

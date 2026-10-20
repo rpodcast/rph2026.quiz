@@ -63,6 +63,8 @@ flowchart LR
 | `R/fct_db.R` | DB connection (SQLite or Postgres via `{pool}`), schema, attempt/answer/leaderboard queries |
 | `R/fct_auth.R` | User identity: mock user or verified Ricochet JWT |
 | `R/utils_settings.R` | `quiz_settings()` and `validate_settings()` |
+| `R/utils_theme.R` | `quiz_theme()` (chalkboard `bs_theme()`) and `chalk_colors()` palette |
+| `inst/app/www/custom.css` | Chalkboard styling (board, frame, chalk tray, chalk-drawn cards and buttons); `@font-face` for the self-hosted fonts in `inst/app/www/fonts/` (Walter Turncoat for headings, Patrick Hand for body text, licenses included) |
 | `inst/app/www/timer.js` | Countdown and question navigator (custom messages `quiz_timer_start`, `quiz_timer_stop`, `quiz_nav`) |
 | `inst/app/quiz/dev_quiz.json` | Placeholder bank for development; the real bank is not in the repository |
 | `app.R`, `_ricochet.toml` | Ricochet entry point (defaults to `production` config) and deployment manifest |

@@ -1,6 +1,6 @@
 Package: rpharma2026.quiz
 Title: shiny ricochet test
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R: 
     person(given = "Eric",
            family = "Nantz",
@@ -27,6 +27,7 @@ Encoding: UTF-8
 LazyData: true
 Suggests: 
     openssl,
+    sass,
     testthat (>= 3.0.0),
     withr
 Config/testthat/edition: 3

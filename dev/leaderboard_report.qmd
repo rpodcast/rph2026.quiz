@@ -1,0 +1,152 @@
+---
+title: "R/Pharma 2026 Quiz Leaderboard"
+date: today
+format:
+  html:
+    toc: false
+    theme: cosmo
+    page-layout: full
+    embed-resources: true
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+
+# Quarto renders with the working directory set to this document's folder
+# (dev/), so golem::pkg_path() would resolve relative paths against dev/ and
+# miss the database the app writes at the project root. Anchor everything to
+# the package root by walking up to the first directory with a DESCRIPTION.
+find_pkg_root <- function(start = getwd()) {
+  path <- normalizePath(start, mustWork = TRUE)
+  repeat {
+    if (file.exists(file.path(path, "DESCRIPTION"))) {
+      return(path)
+    }
+    parent <- dirname(path)
+    if (identical(parent, path)) {
+      stop("Could not find package root (no DESCRIPTION above ", start, ").")
+    }
+    path <- parent
+  }
+}
+pkg_root <- find_pkg_root()
+
+# Choose the config. QUIZ_REPORT_CONFIG is checked first and is specific to
+# this report: the project .Renviron pins GOLEM_CONFIG_ACTIVE="default" and is
+# loaded at R startup, which would otherwise override a value passed on the
+# command line. Use a dedicated variable that nothing in .Renviron sets, e.g.
+#   QUIZ_REPORT_CONFIG=production quarto preview dev/leaderboard_report.qmd
+# Falls back to GOLEM_CONFIG_ACTIVE, then R_CONFIG_ACTIVE, then "default".
+config <- Sys.getenv(
+  "QUIZ_REPORT_CONFIG",
+  Sys.getenv("GOLEM_CONFIG_ACTIVE", Sys.getenv("R_CONFIG_ACTIVE", "default"))
+)
+
+# Quarto previews/renders run R from dev/, so the project root .Renviron (with
+# the PG_* / AWS_* secrets) may not be loaded. Load it here so the Postgres
+# (production) config can connect. It must not override the config chosen
+# above, so restore that afterward.
+renviron_path <- file.path(pkg_root, ".Renviron")
+if (file.exists(renviron_path)) {
+  readRenviron(renviron_path)
+  Sys.setenv(GOLEM_CONFIG_ACTIVE = config)
+}
+
+pkgload::load_all(pkg_root, quiet = TRUE)
+
+library(DBI)
+library(gt)
+db_backend <- get_golem_config("db_backend", config = config)
+
+# Connect to the same database the app uses for this config. Use a single
+# DBI connection (no pool) since this is a one-shot render.
+if (identical(db_backend, "sqlite")) {
+  sqlite_path <- file.path(
+    pkg_root,
+    get_golem_config("sqlite_path", config = config)
+  )
+  db <- db_connect("sqlite", sqlite_path = sqlite_path, use_pool = FALSE)
+  source_label <- paste0("SQLite (", sqlite_path, ")")
+} else if (identical(db_backend, "postgres")) {
+  db <- db_connect("postgres", use_pool = FALSE)
+  source_label <- paste0("Postgres database '", Sys.getenv("PG_DATABASE"), "'")
+} else {
+  stop("Unsupported db_backend: ", db_backend, call. = FALSE)
+}
+# Close the connection when the document finishes rendering.
+db_create_tables(db)
+```
+
+::: {.callout-note collapse="true" title="Data source"}
+Config **`r config`** &middot; `r source_label` &middot; generated
+`r format(Sys.time(), "%Y-%m-%d %H:%M")`
+:::
+
+```{r}
+#| label: leaderboard
+
+# Show every submitted attempt, ranked the same way the app ranks them.
+board <- db_leaderboard(db, n = .Machine$integer.max)
+db_close(db)
+```
+
+```{r}
+#| label: render-leaderboard
+
+if (nrow(board) == 0) {
+  cat("No submitted attempts yet.")
+} else {
+  player <- ifelse(
+    is.na(board$name) | !nzchar(board$name),
+    board$user_id,
+    board$name
+  )
+  # Stored names are often email addresses; show only the local part (before
+  # the @). Values without an @ (e.g. a user_id fallback) are left unchanged.
+  player <- sub("@.*$", "", player)
+
+  display <- data.frame(
+    rank = seq_len(nrow(board)),
+    player = player,
+    score = paste0(board$score, " / ", board$n_questions),
+    percent = board$score / board$n_questions,
+    time = sprintf(
+      "%d:%02d",
+      board$duration_seconds %/% 60,
+      round(board$duration_seconds %% 60)
+    )
+  )
+
+  gt(display) |>
+    cols_label(
+      rank = "Rank",
+      player = "Player",
+      score = "Score",
+      percent = "Percent",
+      time = "Time"
+    ) |>
+    fmt_percent(columns = percent, decimals = 0) |>
+    cols_align(align = "right", columns = c(rank, score, percent, time)) |>
+    cols_align(align = "left", columns = player) |>
+    # Medal colors for the top three places.
+    data_color(
+      columns = rank,
+      rows = rank <= 3,
+      target_columns = everything(),
+      palette = c("#f7d94c", "#d7d7d7", "#e0a46b"),
+      domain = c(1, 3),
+      reverse = TRUE
+    ) |>
+    tab_options(
+      table.font.size = px(22),
+      column_labels.font.size = px(18),
+      column_labels.font.weight = "bold",
+      data_row.padding = px(10),
+      table.width = pct(100)
+    ) |>
+    opt_row_striping()
+}
+```

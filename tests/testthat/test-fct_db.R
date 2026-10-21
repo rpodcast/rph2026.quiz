@@ -43,6 +43,40 @@ test_that("finalize scores once and locks the attempt", {
   expect_false(db_save_answer(db, "u1", ids[[3]], "a", now = 1110))
 })
 
+test_that("a legacy attempts table gains the name column", {
+  path <- withr::local_tempfile(fileext = ".sqlite3")
+  db <- db_connect("sqlite", path, use_pool = FALSE)
+  withr::defer(db_close(db))
+
+  # A pre-feature schema with no `name` column
+  db_execute(
+    db,
+    "CREATE TABLE attempts (
+      user_id TEXT PRIMARY KEY,
+      email TEXT,
+      quiz_id TEXT NOT NULL,
+      quiz_version TEXT NOT NULL,
+      question_ids TEXT NOT NULL,
+      option_orders TEXT NOT NULL,
+      n_questions INTEGER NOT NULL,
+      started_at DOUBLE PRECISION NOT NULL,
+      deadline_at DOUBLE PRECISION NOT NULL,
+      submitted_at DOUBLE PRECISION,
+      submit_reason TEXT,
+      score INTEGER,
+      duration_seconds DOUBLE PRECISION
+    )"
+  )
+  expect_false(db_has_column(db, "attempts", "name"))
+
+  db_ensure_name_column(db)
+  expect_true(db_has_column(db, "attempts", "name"))
+
+  # Idempotent
+  expect_no_error(db_ensure_name_column(db))
+  expect_true(db_has_column(db, "attempts", "name"))
+})
+
 test_that("timeout duration is capped at the time limit", {
   db <- local_test_db()
   bank <- make_bank(5)

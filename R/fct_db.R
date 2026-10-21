@@ -52,7 +52,14 @@ db_pg_params <- function() {
 #' @noRd
 normalize_sslmode <- function(x) {
   x <- tolower(trimws(x))
-  libpq <- c("disable", "allow", "prefer", "require", "verify-ca", "verify-full")
+  libpq <- c(
+    "disable",
+    "allow",
+    "prefer",
+    "require",
+    "verify-ca",
+    "verify-full"
+  )
   if (x %in% libpq) {
     return(x)
   }
@@ -218,7 +225,49 @@ db_create_tables <- function(db) {
       PRIMARY KEY (user_id, question_id)
     )"
   )
+  db_ensure_name_column(db)
   invisible(db)
+}
+
+#' Ensure the `attempts.name` column exists
+#'
+#' New schemas (`db_create_tables()`) already include `name`, but a database
+#' created before the leaderboard-name feature will not have it. This adds the
+#' column in place, leaving existing rows with a `NULL` name. Idempotent on
+#' both backends.
+#'
+#' @param db A database handle.
+#'
+#' @noRd
+db_ensure_name_column <- function(db) {
+  if (db_has_column(db, "attempts", "name")) {
+    return(invisible(db))
+  }
+  db_execute(db, "ALTER TABLE attempts ADD COLUMN name TEXT")
+  invisible(db)
+}
+
+#' Whether a table has a given column
+#'
+#' @param db A database handle.
+#' @param table,column Table and column names.
+#'
+#' @noRd
+db_has_column <- function(db, table, column) {
+  if (identical(db$backend, "postgres")) {
+    found <- db_query(
+      db,
+      "SELECT 1 FROM information_schema.columns
+       WHERE table_schema = current_schema()
+         AND table_name = ? AND column_name = ?",
+      list(table, column)
+    )
+    return(nrow(found) > 0)
+  }
+  # SQLite: PRAGMA does not accept bound parameters, so interpolate the
+  # table name (it is a constant from our own code, never user input)
+  cols <- db_query(db, sprintf("PRAGMA table_info(%s)", table))
+  column %in% cols$name
 }
 
 #' Get a user's attempt

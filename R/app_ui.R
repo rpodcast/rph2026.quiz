@@ -69,6 +69,12 @@ app_ui <- function(request) {
                     ),
                     tags$li("You get one attempt.")
                   ),
+                  textInput(
+                    "intro_name",
+                    "Name for the leaderboard",
+                    placeholder = "Your name"
+                  ),
+                  textOutput("intro_name_error", inline = TRUE),
                   actionButton(
                     "start",
                     "Start the quiz",

@@ -49,11 +49,18 @@ test_that("answering and finishing saves answers and submits", {
       session$setInputs(next_q = 3)
       expect_equal(local_rv$index, 3L)
       session$setInputs(answer = encode_choice(ids[[3]], "a"))
+
+      # Finishing opens the confirm modal; it does not submit yet
       session$setInputs(next_q = 4)
+      expect_equal(quiz_state$status, "quiz")
+
+      session$setInputs(confirm_finish = 1)
 
       expect_equal(quiz_state$status, "results")
       expect_equal(quiz_state$attempt$score, 2L)
       expect_equal(quiz_state$attempt$submit_reason, "finished")
+      # The leaderboard name was captured at intro, before the quiz started
+      expect_equal(quiz_state$attempt$name, "Ada Lovelace")
     }
   )
 })

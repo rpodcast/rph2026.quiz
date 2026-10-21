@@ -82,7 +82,7 @@ mod_quiz_ui <- function(id) {
 #'
 #' @importFrom shiny moduleServer reactiveValues observeEvent renderText
 #'   updateRadioButtons updateActionButton showModal removeModal modalDialog
-#'   modalButton isolate onSessionEnded
+#'   modalButton isolate onSessionEnded req tags
 #' @importFrom later later
 #' @noRd
 mod_quiz_server <- function(id, quiz_state, db, bank, settings) {
@@ -285,26 +285,32 @@ mod_quiz_server <- function(id, quiz_state, db, bank, settings) {
           show_question(local_rv$index + 1L)
           return()
         }
-        missing <- n - length(local_rv$answers)
-        if (missing == 0) {
-          finalize("finished")
-          return()
-        }
-        showModal(modalDialog(
-          title = "Submit your quiz?",
-          sprintf(
-            "You have %d unanswered %s (outlined in the question numbers above). Unanswered questions count as incorrect, and you cannot change answers after submitting.",
-            missing,
-            if (missing == 1) "question" else "questions"
-          ),
-          footer = tagList(
-            modalButton("Keep going"),
-            actionButton(ns("confirm_finish"), "Submit", class = "btn-primary")
-          ),
-          easyClose = TRUE
-        ))
+        show_submit_modal()
       }
     )
+
+    show_submit_modal <- function() {
+      n <- quiz_state$attempt$n_questions
+      missing <- n - length(local_rv$answers)
+      showModal(modalDialog(
+        title = "Submit your quiz?",
+        if (missing > 0) {
+          tags$p(sprintf(
+            "You have %d unanswered %s (outlined in the question numbers above). Unanswered questions count as incorrect.",
+            missing,
+            if (missing == 1) "question" else "questions"
+          ))
+        },
+        tags$p(
+          "You cannot change your answers after submitting."
+        ),
+        footer = tagList(
+          modalButton("Keep going"),
+          actionButton(ns("confirm_finish"), "Submit", class = "btn-primary")
+        ),
+        easyClose = FALSE
+      ))
+    }
 
     observeEvent(
       input$confirm_finish,

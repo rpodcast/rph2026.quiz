@@ -1,3 +1,14 @@
+test_that("sanitize_name trims, collapses whitespace, and caps length", {
+  expect_equal(sanitize_name("  Ada  Lovelace  "), "Ada Lovelace")
+  expect_equal(sanitize_name("Ada\tLovelace\n"), "Ada Lovelace")
+  expect_equal(sanitize_name("line\r\nbreak"), "line break")
+  expect_equal(sanitize_name(NA_character_), "")
+  expect_equal(sanitize_name(NULL), "")
+  expect_equal(sanitize_name(""), "")
+  expect_equal(nchar(sanitize_name(strrep("a", 100))), 60)
+  expect_equal(nchar(sanitize_name(strrep("a", 100), max_chars = 10)), 10)
+})
+
 test_that("the shipped dev bank loads and has enough questions", {
   bank <- load_quiz_bank(app_sys("app", "quiz", "dev_quiz.json"))
   expect_length(bank$questions, 50)

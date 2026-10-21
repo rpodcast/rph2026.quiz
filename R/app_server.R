@@ -11,6 +11,10 @@ app_server <- function(input, output, session) {
   db <- resources$db
   bank <- resources$bank
 
+  local_rv <- reactiveValues(
+    intro_name_error = ""
+  )
+
   quiz_state <- reactiveValues(
     user = resolve_user(
       session,
@@ -53,10 +57,29 @@ app_server <- function(input, output, session) {
     once = TRUE
   )
 
+  # Pre-fill the leaderboard name from the identity (often blank for auth0)
+  observeEvent(
+    quiz_state$status,
+    {
+      req(identical(quiz_state$status, "intro"))
+      prefill <- sanitize_name(quiz_state$user$name)
+      if (nzchar(prefill)) {
+        updateTextInput(session, "intro_name", value = prefill)
+      }
+    }
+  )
+
   observeEvent(
     input$start,
     {
       req(identical(quiz_state$status, "intro"), !is.null(quiz_state$user))
+      name <- sanitize_name(input$intro_name)
+      if (!nzchar(name)) {
+        local_rv$intro_name_error <- "Please enter a name before starting."
+        return()
+      }
+      local_rv$intro_name_error <- ""
+      quiz_state$user$name <- name
       quiz_state$attempt <- db_get_or_start_attempt(
         db,
         quiz_state$user,
@@ -71,6 +94,10 @@ app_server <- function(input, output, session) {
       }
     }
   )
+
+  output$intro_name_error <- renderText({
+    local_rv$intro_name_error
+  })
 
   observeEvent(
     quiz_state$status,

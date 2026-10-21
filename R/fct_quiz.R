@@ -10,6 +10,33 @@ quiz_abort <- function(message) {
   ))
 }
 
+#' Clean a user-entered display name for the leaderboard
+#'
+#' Trims surrounding whitespace, drops control characters (including newlines
+#' and tabs), collapses internal whitespace runs to single spaces, and caps the
+#' length. The result is safe to store and to display, and never contains line
+#' breaks that would break the leaderboard layout. Parameterized SQL (not this
+#' function) is what protects against injection.
+#'
+#' @param name A name as typed by the user (length-1 character, possibly `NA`
+#'   or `NULL`).
+#' @param max_chars Maximum number of characters to keep.
+#'
+#' @return A cleaned length-1 character string (possibly `""`).
+#'
+#' @noRd
+sanitize_name <- function(name, max_chars = 60) {
+  if (is.null(name) || length(name) != 1 || is.na(name)) {
+    return("")
+  }
+  name <- gsub("[[:cntrl:]]", " ", as.character(name))
+  name <- trimws(gsub("[[:space:]]+", " ", name))
+  if (nchar(name) > max_chars) {
+    name <- trimws(substr(name, 1, max_chars))
+  }
+  name
+}
+
 #' Load the quiz question bank
 #'
 #' @param path Path to the quiz bank JSON file.

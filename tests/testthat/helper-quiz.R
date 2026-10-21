@@ -1,10 +1,11 @@
-make_bank <- function(n = 5) {
+make_bank <- function(n = 5, difficulties = c("easy", "medium", "hard")) {
+  levels <- rep_len(difficulties, n)
   questions <- lapply(seq_len(n), function(i) {
     list(
       id = sprintf("t%02d", i),
       prompt = paste("Question", i),
       category = "Testing",
-      difficulty = "easy",
+      difficulty = levels[[i]],
       options = list(
         list(value = "a", label = paste("Right", i)),
         list(value = "b", label = paste("Wrong B", i)),

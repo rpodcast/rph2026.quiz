@@ -1,6 +1,6 @@
 default:
   golem_name: rpharma2026.quiz
-  golem_version: 0.0.0.9002
+  golem_version: 0.0.0.9003
   app_prod: no
   # Quiz bank JSON: a path relative to inst/app, or s3://bucket/key for
   # S3-compatible object storage (credentials from AWS_* environment
@@ -8,7 +8,7 @@ default:
   # out of the repository.
   quiz_bank: quiz/dev_quiz.json
   # Questions drawn at random from the bank for each user
-  quiz_n_questions: 15
+  quiz_n_questions: 20
   # Time limit for the whole quiz
   quiz_time_limit_minutes: 10
   # Network slack (seconds) when checking answers against the deadline

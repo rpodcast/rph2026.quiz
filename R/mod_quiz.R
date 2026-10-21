@@ -292,7 +292,7 @@ mod_quiz_server <- function(id, quiz_state, db, bank, settings) {
       n <- quiz_state$attempt$n_questions
       missing <- n - length(local_rv$answers)
       showModal(modalDialog(
-        title = "Submit your quiz?",
+        title = "Submit your answers?",
         if (missing > 0) {
           tags$p(sprintf(
             "You have %d unanswered %s (outlined in the question numbers above). Unanswered questions count as incorrect.",

@@ -148,8 +148,10 @@ option_label <- function(question, value) {
 
 #' Draw a random quiz from the bank
 #'
-#' Samples `n` questions and an independent random option order for each one,
-#' so the position of the correct answer carries no information.
+#' Samples `n` questions with a fixed difficulty mix: half (`floor(n / 2)`)
+#' are drawn from the `"hard"` questions and the rest from the remaining
+#' (non-hard) questions. Draws an independent random option order for each
+#' question, so the position of the correct answer carries no information.
 #'
 #' @param bank A quiz bank from `load_quiz_bank()`.
 #' @param n Number of questions to draw.
@@ -167,7 +169,32 @@ draw_quiz <- function(bank, n) {
       length(ids)
     ))
   }
-  question_ids <- ids[sample.int(length(ids), n)]
+
+  difficulties <- vapply(bank$questions, question_difficulty, character(1))
+  hard_ids <- ids[difficulties == "hard"]
+  other_ids <- ids[difficulties != "hard"]
+
+  n_hard <- n %/% 2L
+  n_other <- n - n_hard
+
+  if (length(hard_ids) < n_hard) {
+    quiz_abort(sprintf(
+      "Cannot draw %d hard questions from %d available.",
+      n_hard,
+      length(hard_ids)
+    ))
+  }
+  if (length(other_ids) < n_other) {
+    quiz_abort(sprintf(
+      "Cannot draw %d easy/medium questions from %d available.",
+      n_other,
+      length(other_ids)
+    ))
+  }
+
+  drawn <- c(sample_ids(hard_ids, n_hard), sample_ids(other_ids, n_other))
+  question_ids <- drawn[sample.int(length(drawn))]
+
   option_orders <- lapply(question_ids, function(id) {
     values <- option_values(bank$questions[[id]])
     values[sample.int(length(values))]
@@ -176,6 +203,34 @@ draw_quiz <- function(bank, n) {
     question_ids = question_ids,
     option_orders = stats::setNames(option_orders, question_ids)
   )
+}
+
+#' Difficulty label for a question, lower-cased with a fallback
+#'
+#' @param question A single question from the bank.
+#'
+#' @return A length-1 character; `""` when no difficulty is recorded.
+#'
+#' @noRd
+question_difficulty <- function(question) {
+  difficulty <- question$difficulty
+  if (is.null(difficulty) || length(difficulty) != 1 || is.na(difficulty)) {
+    return("")
+  }
+  tolower(as.character(difficulty))
+}
+
+#' Sample `size` ids by value
+#'
+#' `sample()` treats a length-1 numeric-like vector as `seq_len()`; this
+#' samples from the ids themselves regardless of pool size.
+#'
+#' @param ids Character vector of ids to sample from.
+#' @param size Number to draw.
+#'
+#' @noRd
+sample_ids <- function(ids, size) {
+  ids[sample.int(length(ids), size)]
 }
 
 #' Encode / decode an answer choice for the radio input

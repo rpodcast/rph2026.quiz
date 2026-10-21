@@ -46,8 +46,7 @@ mod_quiz_ui <- function(id) {
     bslib::card(
       bslib::card_header(
         class = "d-flex justify-content-between align-items-center gap-2",
-        textOutput(ns("category"), inline = TRUE),
-        textOutput(ns("difficulty"), inline = TRUE)
+        textOutput(ns("category"), inline = TRUE)
       ),
       bslib::card_body(
         tags$h2(
@@ -363,12 +362,6 @@ mod_quiz_server <- function(id, quiz_state, db, bank, settings) {
     output$category <- renderText({
       req(local_rv$index)
       current_question()$category %||% ""
-    })
-
-    output$difficulty <- renderText({
-      req(local_rv$index)
-      difficulty <- current_question()$difficulty
-      if (is.null(difficulty)) "" else paste("Difficulty:", difficulty)
     })
   })
 }

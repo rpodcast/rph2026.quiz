@@ -16,27 +16,56 @@ test_that("the shipped dev bank loads and has enough questions", {
 })
 
 test_that("draw_quiz returns unique questions with shuffled full option sets", {
-  bank <- make_bank(20)
-  draw <- withr::with_seed(5821, draw_quiz(bank, 15))
-  expect_length(draw$question_ids, 15)
+  bank <- make_bank(30)
+  draw <- withr::with_seed(5821, draw_quiz(bank, 20))
+  expect_length(draw$question_ids, 20)
   expect_false(anyDuplicated(draw$question_ids) > 0)
   expect_named(draw$option_orders, draw$question_ids)
   for (order in draw$option_orders) {
     expect_setequal(order, c("a", "b", "c"))
   }
-  again <- withr::with_seed(5821, draw_quiz(bank, 15))
+  again <- withr::with_seed(5821, draw_quiz(bank, 20))
   expect_identical(draw, again)
 })
 
+test_that("draw_quiz draws exactly half hard questions", {
+  bank <- make_bank(30)
+  draw <- withr::with_seed(4412, draw_quiz(bank, 20))
+  drawn_difficulty <- vapply(
+    draw$question_ids,
+    function(id) bank$questions[[id]]$difficulty,
+    character(1)
+  )
+  expect_equal(sum(drawn_difficulty == "hard"), 10)
+  expect_equal(sum(drawn_difficulty != "hard"), 10)
+})
+
+test_that("draw_quiz handles an odd n by favoring non-hard questions", {
+  bank <- make_bank(30)
+  draw <- withr::with_seed(4412, draw_quiz(bank, 15))
+  drawn_difficulty <- vapply(
+    draw$question_ids,
+    function(id) bank$questions[[id]]$difficulty,
+    character(1)
+  )
+  expect_equal(sum(drawn_difficulty == "hard"), 7)
+  expect_equal(sum(drawn_difficulty != "hard"), 8)
+})
+
 test_that("option shuffling moves the correct answer off position 1", {
-  bank <- make_bank(50)
-  draw <- withr::with_seed(907, draw_quiz(bank, 50))
+  bank <- make_bank(60)
+  draw <- withr::with_seed(907, draw_quiz(bank, 40))
   first <- vapply(draw$option_orders, `[[`, character(1), 1)
   expect_true(any(first != "a"))
 })
 
 test_that("draw_quiz errors when the bank is too small", {
   expect_error(draw_quiz(make_bank(3), 5), class = "quiz_bank_error")
+})
+
+test_that("draw_quiz errors when there are too few hard questions", {
+  bank <- make_bank(20, difficulties = c("easy", "medium"))
+  expect_error(draw_quiz(bank, 10), class = "quiz_bank_error")
 })
 
 test_that("validate_quiz_bank catches malformed banks", {
